@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Students in ascending order of marks:</h2>
+    <p id="studentList"></p>
+
+    <h3>Average performance of the class: <span id="averageMarks">0</span></h3>
+</div>
+
+<script>
+    // Object containing students and their marks
+    const students = {
+        'Ashish': 64,
+        'Kunal': 75,
+        'Yash': 78,
+        'Mohit': 81,
+        'Ved': 92
+    };
+
+    // Convert the object to an array and sort it by marks
+    const sortedStudents = Object.entries(students).sort((a, b) => a[1] - b[1]);
+
+    // Display sorted students with marks
+    const studentList = sortedStudents.map(student => `${student[0]}: ${student[1]}`).join('<br>');
+    document.getElementById('studentList').innerHTML = studentList;
+
+    // Calculate the average marks
+    const totalMarks = sortedStudents.reduce((total, student) => total + student[1], 0);
+    const averageMarks = totalMarks / sortedStudents.length;
+
+    // Display the average marks
+    document.getElementById('averageMarks').textContent = averageMarks;
+</script>
+
+</body>
+</html>
